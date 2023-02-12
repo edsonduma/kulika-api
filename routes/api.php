@@ -22,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('/produtos', ProdutoController::class);
 Route::resource('/users', UserController::class);
+
+Route::put('/users/login', 'UserController@update');

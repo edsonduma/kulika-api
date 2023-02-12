@@ -14,7 +14,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return [
+            "status" => 200,
+            "data" => User::all()
+        ];
     }
 
     /**
@@ -25,11 +28,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::create($request->all());
-
         return [
             "status" => 200,
-            "data" => $user
+            "data" => User::create($request->all())
         ];
     }
 
@@ -41,7 +42,10 @@ class UserController extends Controller
      */
     public function show($user)
     {
-        // dd("tetset show");
+        return [
+            "status" => 200,
+            "data" => User::where('nome', $user)->first()
+        ];
     }
 
     /**
@@ -53,7 +57,15 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = $request->all();
+        $myUser = User::where('nome', $user['nome'])->where('senha', $user['senha'])->first();
+
+        // dd($myUser);
+
+        return [
+            "status" => 200,
+            "data" => $myUser
+        ];
     }
 
     /**
